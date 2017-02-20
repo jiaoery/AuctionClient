@@ -3,7 +3,9 @@ package org.crazyit.auction.client;
 import android.os.Bundle;
 import android.app.Activity;
 
-public class Register extends Activity {
+import org.crazyit.BaseActivity;
+
+public class Register extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
