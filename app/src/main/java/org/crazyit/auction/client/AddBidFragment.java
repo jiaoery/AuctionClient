@@ -3,6 +3,7 @@ package org.crazyit.auction.client;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.crazyit.BaseFragment;
 import org.crazyit.auction.client.util.DialogUtil;
 import org.crazyit.auction.client.util.HttpUtil;
 import org.json.JSONObject;
@@ -17,7 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class AddBidFragment extends Fragment
+public class AddBidFragment extends BaseFragment
 {
 	// 定义界面中文本框
 	TextView itemName, itemDesc,itemRemark,itemKind

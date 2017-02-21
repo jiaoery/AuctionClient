@@ -1,5 +1,6 @@
 package org.crazyit.auction.client;
 
+import org.crazyit.BaseFragment;
 import org.crazyit.auction.client.util.DialogUtil;
 import org.crazyit.auction.client.util.HttpUtil;
 import org.json.JSONArray;
@@ -15,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class ManageKindFragment extends Fragment
+public class ManageKindFragment extends BaseFragment
 {
 	public static final int ADD_KIND = 0x1007;
 	Button bnHome , bnAdd;

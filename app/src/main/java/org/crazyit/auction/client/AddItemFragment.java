@@ -3,6 +3,7 @@ package org.crazyit.auction.client;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.crazyit.BaseFragment;
 import org.crazyit.auction.client.util.DialogUtil;
 import org.crazyit.auction.client.util.HttpUtil;
 import org.json.JSONArray;
@@ -18,7 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class AddItemFragment extends Fragment
+public class AddItemFragment extends BaseFragment
 {
 	// 定义界面中文本框
 	EditText itemName, itemDesc,itemRemark,initPrice;
@@ -51,11 +52,11 @@ public class AddItemFragment extends Fragment
 		{
 			e1.printStackTrace();
 		}
-		// 将JSONArray包装成Adapter
-		JSONArrayAdapter adapter = new JSONArrayAdapter(
-				getActivity() , jsonArray , "kindName" , false);
-		// 显示物品种类列表
-		itemKind.setAdapter(adapter);
+//		// 将JSONArray包装成Adapter
+//		JSONArrayAdapter adapter = new JSONArrayAdapter(
+//				getActivity() , jsonArray , "kindName" , false);
+//		// 显示物品种类列表
+//		itemKind.setAdapter(adapter);
 		// 获取界面中的两个按钮
 		bnAdd = (Button) rootView.findViewById(R.id.bnAdd);
 		bnCancel = (Button) rootView.findViewById(R.id.bnCancel);

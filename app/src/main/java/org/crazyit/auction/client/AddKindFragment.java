@@ -3,6 +3,7 @@ package org.crazyit.auction.client;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.crazyit.BaseFragment;
 import org.crazyit.auction.client.util.DialogUtil;
 import org.crazyit.auction.client.util.HttpUtil;
 
@@ -15,7 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class AddKindFragment extends Fragment
+public class AddKindFragment extends BaseFragment
 {
 	// 定义界面中两个文本框
 	EditText kindName, kindDesc;

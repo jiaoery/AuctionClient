@@ -1,5 +1,6 @@
 package org.crazyit.auction.client;
 
+import org.crazyit.BaseFragment;
 import org.crazyit.auction.client.util.DialogUtil;
 import org.crazyit.auction.client.util.HttpUtil;
 import org.json.JSONArray;
@@ -17,7 +18,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ViewBidFragment extends Fragment
+public class ViewBidFragment extends BaseFragment
 {
 	Button bnHome;
 	ListView bidList;
@@ -37,12 +38,12 @@ public class ViewBidFragment extends Fragment
 		String url = HttpUtil.BASE_URL + "viewBid.jsp";
 		try
 		{
-			// 向指定URL发送请求，并把服务器响应包装成JSONArray对象
-			JSONArray jsonArray = new JSONArray(HttpUtil.getRequest(url));
-			// 将JSONArray包装成Adapter
-			JSONArrayAdapter adapter = new JSONArrayAdapter(getActivity()
-					, jsonArray, "item", true);
-			bidList.setAdapter(adapter);
+//			// 向指定URL发送请求，并把服务器响应包装成JSONArray对象
+//			JSONArray jsonArray = new JSONArray(HttpUtil.getRequest(url));
+//			// 将JSONArray包装成Adapter
+//			JSONArrayAdapter adapter = new JSONArrayAdapter(getActivity()
+//					, jsonArray, "item", true);
+//			bidList.setAdapter(adapter);
 		}
 		catch (Exception e)
 		{

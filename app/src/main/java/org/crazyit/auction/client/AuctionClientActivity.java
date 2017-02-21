@@ -1,11 +1,12 @@
 package org.crazyit.auction.client;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
-public class AuctionClientActivity extends Activity
+import org.crazyit.BaseActivity;
+
+public class AuctionClientActivity extends BaseActivity
 		implements Callbacks
 {
 	// 定义一个旗标，用于标识该应用是否支持大屏幕
@@ -94,7 +95,10 @@ public class AuctionClientActivity extends Activity
 					break;
 			}
 			// 使用fragment替换auction_detail_container容器当前显示的Fragment
-			getFragmentManager().beginTransaction()
+//			getFragmentManager().beginTransaction()
+//					.replace(R.id.auction_detail_container, fragment)
+//					.addToBackStack(null).commit();
+			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.auction_detail_container, fragment)
 					.addToBackStack(null).commit();
 		}

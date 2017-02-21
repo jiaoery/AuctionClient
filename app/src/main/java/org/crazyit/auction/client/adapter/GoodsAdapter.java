@@ -1,6 +1,7 @@
-package org.crazyit.auction.client;
+package org.crazyit.auction.client.adapter;
 
-import org.json.JSONArray;
+import org.crazyit.auction.client.R;
+import org.crazyit.auction.client.bean.Goods;
 import org.json.JSONObject;
 import org.json.JSONException;
 
@@ -12,20 +13,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class JSONArrayAdapter extends BaseAdapter
+import java.util.List;
+
+public class GoodsAdapter extends BaseAdapter
 {
-	private Context ctx;
-	// 定义需要包装的JSONArray对象
-	private JSONArray jsonArray;
+	private Context context;
+	//商品列表
+	private List<Goods> goodses;
 	// 定义列表项显示JSONObject对象的哪个属性
 	private String property;
 	private boolean hasIcon;
-	public JSONArrayAdapter(Context ctx
-			, JSONArray jsonArray, String property
+	public GoodsAdapter(Context context
+			, List<Goods> goodses, String property
 			, boolean hasIcon)
 	{
-		this.ctx = ctx;
-		this.jsonArray = jsonArray;
+		this.context = context;
+		this.goodses = goodses;
 		this.property = property;
 		this.hasIcon = hasIcon;
 	}
@@ -33,57 +36,52 @@ public class JSONArrayAdapter extends BaseAdapter
 	@Override
 	public int getCount()
 	{
-		return jsonArray.length();
+		return goodses.size();
 	}
 
 	@Override
-	public Object getItem(int position)
+	public Goods getItem(int position)
 	{
-		return jsonArray.optJSONObject(position);
+		return goodses.get(position);
 	}
 
 	@Override
 	public long getItemId(int position)
 	{
-		try
-		{
 			// 返回物品的ID
-			return ((JSONObject)getItem(position)).getInt("id");
-		}
-		catch (JSONException e)
-		{
-			e.printStackTrace();
-		}
-		return 0;
+			return position>=goodses.size()?0:goodses.get(position).getGoodsId();
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
 		// 定义一个线性布局管理器
-		LinearLayout linear = new LinearLayout(ctx);
+		LinearLayout linear = new LinearLayout(context);
 		// 设置为水平的线性布局管理器
-		linear.setOrientation(0);
+		linear.setOrientation(LinearLayout.HORIZONTAL);
 		// 创建一个ImageView
-		ImageView iv = new ImageView(ctx);
+		ImageView iv = new ImageView(context);
 		iv.setPadding(10, 0, 20, 0);
 		iv.setImageResource(R.drawable.item);
 		// 将图片添加到LinearLayout中
 		linear.addView(iv);
 		// 创建一个TextView
-		TextView tv = new TextView(ctx);
-		try
-		{
+		TextView tv = new TextView(context);
 			// 获取JSONArray数组元素的property属性
-			String itemName = ((JSONObject)getItem(position))
-					.getString(property);
+//			String itemName = ((JSONObject)getItem(position))
+//					.getString(property);
+		String itemName="";
+		switch (property){
+			case "name"://商品名称
+				itemName=getItem(position).getGoodsName();
+				break;
+			case "kindName"://种类名称
+				itemName=getItem(position).getKindName();
+				break;
+		}
+
 			// 设置TextView所显示的内容
 			tv.setText(itemName);
-		}
-		catch (JSONException e)
-		{
-			e.printStackTrace();
-		}
 
 		tv.setTextSize(20);
 		if (hasIcon)

@@ -1,5 +1,6 @@
 package org.crazyit.auction.client;
 
+import org.crazyit.BaseFragment;
 import org.crazyit.auction.client.util.DialogUtil;
 import org.crazyit.auction.client.util.HttpUtil;
 import org.json.JSONArray;
@@ -15,7 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class ChooseKindFragment extends Fragment
+public class ChooseKindFragment extends BaseFragment
 {
 	public static final int CHOOSE_ITEM = 0x1008;
 	Callbacks mCallbacks;

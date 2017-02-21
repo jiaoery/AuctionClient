@@ -1,5 +1,6 @@
 package org.crazyit.auction.client;
 
+import org.crazyit.BaseFragment;
 import org.crazyit.auction.client.util.DialogUtil;
 import org.crazyit.auction.client.util.HttpUtil;
 import org.json.JSONArray;
@@ -18,7 +19,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ChooseItemFragment extends Fragment
+public class ChooseItemFragment extends BaseFragment
 {
 	public static final int ADD_BID = 0x1009;
 	Button bnHome;
@@ -44,11 +45,11 @@ public class ChooseItemFragment extends Fragment
 		try
 		{
 			// 根据种类ID获取该种类对应的所有物品
-			JSONArray jsonArray = new JSONArray(HttpUtil.getRequest(url));
-			JSONArrayAdapter adapter = new JSONArrayAdapter(
-					getActivity() , jsonArray , "name" , true);
-			// 使用ListView显示当前种类的所有物品
-			succList.setAdapter(adapter);
+//			JSONArray jsonArray = new JSONArray(HttpUtil.getRequest(url));
+//			JSONArrayAdapter adapter = new JSONArrayAdapter(
+//					getActivity() , jsonArray , "name" , true);
+//			// 使用ListView显示当前种类的所有物品
+//			succList.setAdapter(adapter);
 		}
 		catch (Exception e1)
 		{

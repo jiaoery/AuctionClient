@@ -1,12 +1,11 @@
 package org.crazyit.auction.client;
 
-import org.crazyit.app.base.FragmentActivity;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
 public class ViewBid extends FragmentActivity
 {
-	@Override
 	protected Fragment getFragment()
 	{
 		return new ViewBidFragment();

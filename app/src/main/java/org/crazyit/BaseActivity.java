@@ -2,6 +2,7 @@ package org.crazyit;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -13,7 +14,7 @@ import cn.bmob.v3.Bmob;
  * Created by cqjix on 2017/2/19.
  */
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends FragmentActivity {
 
     private String LOG_TAG;
 
@@ -29,26 +30,26 @@ public class BaseActivity extends Activity {
 
 
     //标准toat
-    protected void toast(String string){
+    public void toast(String string){
         Toast.makeText(this,string,Toast.LENGTH_SHORT).show();
     }
 
     //标准toat
-    protected void toast(int string){
+    public void toast(int string){
         Toast.makeText(this,string,Toast.LENGTH_SHORT).show();
     }
 
     //标准toat
-    protected void toastLong(String string){
+    public void toastLong(String string){
         Toast.makeText(this,string,Toast.LENGTH_LONG).show();
     }
 
-    protected void toastLong(int string){
+    public void toastLong(int string){
         Toast.makeText(this,string,Toast.LENGTH_LONG).show();
     }
 
     //通用log
-    protected void log(String string){
+    public void log(String string){
         Logger.d(string);
     }
 

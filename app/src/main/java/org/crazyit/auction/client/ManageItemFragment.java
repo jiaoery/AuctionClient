@@ -1,5 +1,6 @@
 package org.crazyit.auction.client;
 
+import org.crazyit.BaseFragment;
 import org.crazyit.auction.client.util.DialogUtil;
 import org.crazyit.auction.client.util.HttpUtil;
 import org.json.JSONArray;
@@ -20,7 +21,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ManageItemFragment extends Fragment
+public class ManageItemFragment extends BaseFragment
 {
 	public static final int ADD_ITEM = 0x1006;;
 	Button bnHome, bnAdd;
@@ -51,12 +52,12 @@ public class ManageItemFragment extends Fragment
 		String url = HttpUtil.BASE_URL + "viewOwnerItem.jsp";
 		try
 		{
-			// 向指定URL发送请求
-			JSONArray jsonArray = new JSONArray(HttpUtil.getRequest(url));
-			// 将服务器响应包装成Adapter
-			JSONArrayAdapter adapter = new JSONArrayAdapter(getActivity()
-					, jsonArray, "name", true);
-			itemList.setAdapter(adapter);
+//			// 向指定URL发送请求
+//			JSONArray jsonArray = new JSONArray(HttpUtil.getRequest(url));
+//			// 将服务器响应包装成Adapter
+//			JSONArrayAdapter adapter = new JSONArrayAdapter(getActivity()
+//					, jsonArray, "name", true);
+//			itemList.setAdapter(adapter);
 		}
 		catch (Exception e)
 		{

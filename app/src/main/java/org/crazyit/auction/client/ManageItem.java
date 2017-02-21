@@ -1,15 +1,13 @@
 package org.crazyit.auction.client;
 
-import org.crazyit.app.base.FragmentActivity;
-
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
 public class ManageItem extends FragmentActivity
 		implements Callbacks
 {
-	@Override
 	public Fragment getFragment()
 	{
 		return new ManageItemFragment();
