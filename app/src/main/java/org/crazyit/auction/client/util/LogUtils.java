@@ -14,6 +14,10 @@ public class LogUtils {
         Logger.i(str);
     }
 
+    //debug 信息输入
+    public static void logd(String str){
+        Logger.d(str);
+    }
     //verbose 信息输入
     public static void logv(String str){
         Logger.v(str);
