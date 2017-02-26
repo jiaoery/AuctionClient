@@ -94,9 +94,9 @@ public class ManageItemFragment extends BaseFragment {
     }
 
     private void initData() {
-        //查询用户已经竞拍到的商品，为 最高价为用户，且已过截至日期
+        //查询所有的物品
         BmobQuery<Goods> goodsQuery = new BmobQuery<>();
-        goodsQuery.addWhereGreaterThan("userId", "");
+        goodsQuery.addWhereGreaterThanOrEqualTo("goodsName", "");
         goodsQuery.findObjects(new FindListener<Goods>() {
             @Override
             public void done(List<Goods> list, BmobException e) {

@@ -21,5 +21,6 @@ public class ManageItem extends BaseFragmentActivity
 		// 当用户单击添加按钮时，将会启动AddItem Activity
 		Intent i = new Intent(this , AddItem.class);
 		startActivity(i);
+		finish();
 	}
 }

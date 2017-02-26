@@ -104,9 +104,9 @@ public class AddItemFragment extends BaseFragment
 			}
 		});
 
-		initData();
-		return rootView;
-	}
+	initData();
+	return rootView;
+}
 
 	private void initData() {
 		BmobQuery<KindBean> query=new BmobQuery<KindBean>();

@@ -49,7 +49,7 @@ public class GoodsAdapter extends BaseAdapter
 	public long getItemId(int position)
 	{
 			// 返回物品的ID
-			return position>=goodses.size()?0:goodses.get(position).getGoodsId();
+			return position;
 	}
 
 	@Override

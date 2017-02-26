@@ -12,7 +12,6 @@ public class Goods extends BmobObject{
 
     private String userId;//用户的id名
 
-    private long goodsId;//商品id
 
     private String goodsName;//商品名称
 
@@ -49,13 +48,13 @@ public class Goods extends BmobObject{
         this.addTime = addTime;
     }
 
-    public long getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(long goodsId) {
-        this.goodsId = goodsId;
-    }
+//    public long getGoodsId() {
+//        return goodsId;
+//    }
+//
+//    public void setGoodsId(long goodsId) {
+//        this.goodsId = goodsId;
+//    }
 
     public String getGoodsName() {
         return goodsName;
