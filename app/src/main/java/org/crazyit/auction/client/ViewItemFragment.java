@@ -25,6 +25,10 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 
+/**
+ * 浏览拍卖物品
+ */
+
 public class ViewItemFragment extends BaseFragment {
     Button bnHome;
     ListView succList;
@@ -74,8 +78,10 @@ public class ViewItemFragment extends BaseFragment {
 
     //初始化数据
     public void initData() {
+        //查询用户已经竞拍到的商品，为 最高价为用户，且已过截至日期
                     BmobQuery<Goods> goodsQuery = new BmobQuery<>();
                     goodsQuery.addWhereEqualTo("userId", BmobUser.getCurrentUser().getObjectId());
+                    goodsQuery.addWhereLessThan("endTime",System.currentTimeMillis());
                     goodsQuery.findObjects(new FindListener<Goods>() {
                         @Override
                         public void done(List<Goods> list, BmobException e) {
