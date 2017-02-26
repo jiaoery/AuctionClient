@@ -56,7 +56,7 @@ public class ChooseKindFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Bundle bundle = new Bundle();
-                bundle.putLong("kindId", id);
+                bundle.putString("kindName", beanList.get(position).getKindName());
                 mCallbacks.onItemSelected(CHOOSE_ITEM, bundle);
             }
         });
@@ -85,8 +85,9 @@ public class ChooseKindFragment extends BaseFragment {
             @Override
             public void done(BmobQueryResult<KindBean> bmobQueryResult, BmobException e) {
                 if(e==null){
-                    beanList=bmobQueryResult.getResults();
-                    if(beanList!=null&&beanList.size()>0){
+                    if( bmobQueryResult.getResults()!=null&& bmobQueryResult.getResults().size()>0){
+                        beanList.clear();
+                        beanList.addAll(bmobQueryResult.getResults());
                         LogUtils.logd("获取数据成功");
                     }else{
                         beanList=new ArrayList<KindBean>();

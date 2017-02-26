@@ -19,7 +19,7 @@ public class ChooseKind extends BaseFragmentActivity
 	public void onItemSelected(Integer id, Bundle bundle)
 	{
 		Intent intent = new Intent(this , ChooseItem.class);
-		intent.putExtra("kindId", bundle.getLong("kindId"));
+		intent.putExtra("kindName", bundle.getString("kindName"));
 		startActivity(intent);
 	}
 }
