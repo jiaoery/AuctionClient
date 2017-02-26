@@ -13,8 +13,8 @@ public class AddBid extends BaseFragmentActivity
 	{
 		AddBidFragment fragment = new AddBidFragment();
 		Bundle args = new Bundle();
-		args.putInt("itemId", getIntent()
-			.getIntExtra("itemId", -1));
+		args.putString("itemId", getIntent()
+			.getStringExtra("itemId"));
 		fragment.setArguments(args);
 		return fragment;
 	}

@@ -17,8 +17,8 @@ public class ChooseItem extends BaseFragmentActivity
 	{
 		ChooseItemFragment fragment = new ChooseItemFragment();
 		Bundle args = new Bundle();
-		args.putLong("kindId", getIntent()
-			.getLongExtra("kindId", -1));
+		args.putString("kindName", getIntent()
+			.getStringExtra("kindName"));
 		fragment.setArguments(args);
 		return fragment;
 	}
@@ -26,7 +26,7 @@ public class ChooseItem extends BaseFragmentActivity
 	public void onItemSelected(Integer id, Bundle bundle)
 	{
 		Intent intent = new Intent(this , AddBid.class);
-		intent.putExtra("itemId", bundle.getInt("itemId"));
+		intent.putExtra("itemId", bundle.getString("itemId"));
 		startActivity(intent);
 	}
 }

@@ -90,7 +90,7 @@ public class AuctionClientActivity extends BaseActivity
 				case ChooseItemFragment.ADD_BID:
 					fragment = new AddBidFragment();
 					Bundle args2 = new Bundle();
-					args2.putInt("itemId", bundle.getInt("itemId"));
+					args2.putString("itemId", bundle.getString("itemId"));
 					fragment.setArguments(args2);
 					break;
 			}
