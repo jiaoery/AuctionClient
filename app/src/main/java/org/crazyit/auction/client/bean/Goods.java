@@ -10,7 +10,7 @@ import cn.bmob.v3.BmobObject;
 public class Goods extends BmobObject{
 
 
-    private String objectId;//用户的id名
+    private String userId;//用户的id名
 
     private long goodsId;//商品id
 
@@ -20,21 +20,31 @@ public class Goods extends BmobObject{
 
     private String item;//商品备注信息
 
+    private int initPrice;//初始价格
+
     private int maxPrice;//最大价格
 
     private String desc;//商品简介
 
     private long endTime;//拍卖截至时间
 
+    private long addTime;//添加日期
 
-    @Override
-    public String getObjectId() {
-        return objectId;
+
+    public String getUserId() {
+        return userId;
     }
 
-    @Override
-    public void setObjectId(String objectId) {
-        this.objectId = objectId;
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public long getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(long addTime) {
+        this.addTime = addTime;
     }
 
     public long getGoodsId() {
@@ -67,6 +77,22 @@ public class Goods extends BmobObject{
 
     public void setItem(String item) {
         this.item = item;
+    }
+
+    public int getInitPrice() {
+        return initPrice;
+    }
+
+    public void setInitPrice(int initPrice) {
+        this.initPrice = initPrice;
+    }
+
+    public long getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(long endTime) {
+        this.endTime = endTime;
     }
 
     public int getMaxPrice() {

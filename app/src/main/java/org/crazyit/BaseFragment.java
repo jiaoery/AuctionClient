@@ -16,9 +16,12 @@ public class BaseFragment extends Fragment{
     protected String LOG_TAG;
     protected BaseActivity activity;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         activity= (BaseActivity) getActivity();
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

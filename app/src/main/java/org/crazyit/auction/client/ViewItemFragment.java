@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 
 public class ViewItemFragment extends BaseFragment {
     Button bnHome;
@@ -71,21 +73,24 @@ public class ViewItemFragment extends BaseFragment {
 
     //初始化数据
     public void initData() {
-        BmobQuery<Goods> goodsQuery = new BmobQuery<>();
-        goodsQuery.addWhereEqualTo("goodsName", "遥控飞机");
-        goodsQuery.findObjects(new FindListener<Goods>() {
-            @Override
-            public void done(List<Goods> list, BmobException e) {
-                if (e != null) {
-                    goodses.clear();
-                    goodses.addAll(list);
-                } else {
-                    LogUtils.loge(e.getMessage());
-                    activity.toast("获取竞得物品失败：" + e.getMessage());
+                    BmobQuery<Goods> goodsQuery = new BmobQuery<>();
+                    goodsQuery.addWhereEqualTo("userId", BmobUser.getCurrentUser().getObjectId());
+                    goodsQuery.findObjects(new FindListener<Goods>() {
+                        @Override
+                        public void done(List<Goods> list, BmobException e) {
+                            if (e == null) {
+                                goodses.clear();
+                                goodses.addAll(list);
+                                adapter.notifyDataSetChanged();
+                            } else {
+                                LogUtils.loge(e.getMessage());
+                                activity.toast("获取竞得物品失败：" + e.getMessage());
 
-                }
-            }
-        });
+                            }
+                        }
+                    });
+
+
     }
 
     private void viewItemDetail(int position) {
@@ -108,7 +113,7 @@ public class ViewItemFragment extends BaseFragment {
         // 通过文本框显示物品详情
         itemName.setText(goods.getGoodsName());
         itemKind.setText(goods.getKindName());
-        maxPrice.setText(goods.getMaxPrice());
+        maxPrice.setText(String.valueOf(goods.getMaxPrice()));
         itemRemark.setText(goods.getDesc());
         DialogUtil.showDialog(getActivity(), detailView);
     }

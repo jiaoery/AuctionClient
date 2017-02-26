@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
-public class ChooseKind extends FragmentActivity
+import org.crazyit.BaseFragmentActivity;
+
+public class ChooseKind extends BaseFragmentActivity
 	implements Callbacks
 {
+	@Override
 	public Fragment getFragment()
 	{
 		return new ChooseKindFragment();

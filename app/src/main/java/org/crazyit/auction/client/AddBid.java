@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
-public class AddBid extends FragmentActivity
+import org.crazyit.BaseFragmentActivity;
+
+public class AddBid extends BaseFragmentActivity
 {
+	@Override
 	public Fragment getFragment()
 	{
 		AddBidFragment fragment = new AddBidFragment();
