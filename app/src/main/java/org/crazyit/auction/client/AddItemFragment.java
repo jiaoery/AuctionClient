@@ -181,7 +181,7 @@ public class AddItemFragment extends BaseFragment
 		good.setKindName(kindName);
 		good.setGoodsRemark(remark);
 		good.setEndTime(availTime);
-		good.setUserId(BmobUser.getCurrentUser().getObjectId());
+//		good.setUserId(BmobUser.getCurrentUser().getObjectId());
 		good.save(new SaveListener<String>() {
 			@Override
 			public void done(String s, BmobException e) {
