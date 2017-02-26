@@ -65,20 +65,20 @@ public class ChooseKindFragment extends BaseFragment {
     }
 
     private void initData() {
-        KindBean kindBean=new KindBean();
-        kindBean.setKindName("玩具");
-        kindBean.setKindName("可爱的孩子们最爱");
-        kindBean.save(new SaveListener<String>() {
-            @Override
-            public void done(String s, BmobException e) {
-                if(e!=null){
-                    LogUtils.loge(e.getMessage());
-                    activity.toast("插入数据失败："+e.getMessage());
-                }else{
-                    activity.toast(s);
-                }
-            }
-        });
+//        KindBean kindBean=new KindBean();
+//        kindBean.setKindName("玩具");
+//        kindBean.setKindName("可爱的孩子们最爱");
+//        kindBean.save(new SaveListener<String>() {
+//            @Override
+//            public void done(String s, BmobException e) {
+//                if(e!=null){
+//                    LogUtils.loge(e.getMessage());
+//                    activity.toast("插入数据失败："+e.getMessage());
+//                }else{
+//                    activity.toast(s);
+//                }
+//            }
+//        });
 
         BmobQuery<KindBean> query=new BmobQuery<KindBean>();
         query.doSQLQuery("select * from KindBean", new SQLQueryListener<KindBean>() {

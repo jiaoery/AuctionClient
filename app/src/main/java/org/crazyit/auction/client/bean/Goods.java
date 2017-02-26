@@ -26,6 +26,8 @@ public class Goods extends BmobObject{
 
     private String desc;//商品简介
 
+    private String goodsRemark;//商品备注
+
     private long endTime;//拍卖截至时间
 
     private long addTime;//添加日期
@@ -109,5 +111,13 @@ public class Goods extends BmobObject{
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public String getGoodsRemark() {
+        return goodsRemark;
+    }
+
+    public void setGoodsRemark(String goodsRemark) {
+        this.goodsRemark = goodsRemark;
     }
 }
