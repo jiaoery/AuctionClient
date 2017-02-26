@@ -1,12 +1,13 @@
 package org.crazyit.auction.client;
 
-import org.crazyit.app.base.FragmentActivity;
-
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
-public class ManageItem extends FragmentActivity
+import org.crazyit.BaseFragmentActivity;
+
+public class ManageItem extends BaseFragmentActivity
 		implements Callbacks
 {
 	@Override
@@ -20,5 +21,6 @@ public class ManageItem extends FragmentActivity
 		// 当用户单击添加按钮时，将会启动AddItem Activity
 		Intent i = new Intent(this , AddItem.class);
 		startActivity(i);
+		finish();
 	}
 }

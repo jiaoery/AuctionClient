@@ -1,11 +1,13 @@
 package org.crazyit.auction.client;
 
-import org.crazyit.app.base.FragmentActivity;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
-public class ViewItem extends FragmentActivity
+import org.crazyit.BaseFragmentActivity;
+
+public class ViewItem extends BaseFragmentActivity
 {
 	// 重写getFragment()方法，该Activity显示该方法返回的Fragment
 	@Override

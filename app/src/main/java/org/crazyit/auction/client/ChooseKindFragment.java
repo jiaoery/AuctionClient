@@ -1,7 +1,11 @@
 package org.crazyit.auction.client;
 
+import org.crazyit.BaseFragment;
+import org.crazyit.auction.client.adapter.KindAdapter;
+import org.crazyit.auction.client.bean.KindBean;
 import org.crazyit.auction.client.util.DialogUtil;
 import org.crazyit.auction.client.util.HttpUtil;
+import org.crazyit.auction.client.util.LogUtils;
 import org.json.JSONArray;
 
 import android.app.Activity;
@@ -15,72 +19,105 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class ChooseKindFragment extends Fragment
-{
-	public static final int CHOOSE_ITEM = 0x1008;
-	Callbacks mCallbacks;
-	Button bnHome;
-	ListView kindList;
-	@Override
-	public View onCreateView(LayoutInflater inflater
-			, ViewGroup container, Bundle savedInstanceState)
-	{
-		View rootView = inflater.inflate(R.layout.choose_kind
-				, container , false);
-		bnHome = (Button) rootView.findViewById(R.id.bn_home);
-		kindList = (ListView) rootView.findViewById(R.id.kindList);
-		// 为返回按钮的单击事件绑定事件监听器
-		bnHome.setOnClickListener(new HomeListener(getActivity()));
-		// 定义发送请求的URL
-		String url = HttpUtil.BASE_URL + "viewKind.jsp";
-		try
-		{
-			// 向指定URL发送请求，并将服务器响应包装成JSONArray对象。
-			JSONArray jsonArray = new JSONArray(
-					HttpUtil.getRequest(url));  // ①
-			// 使用ListView显示所有物品准种类
-			kindList.setAdapter(new KindArrayAdapter(jsonArray
-					, getActivity()));
-		}
-		catch (Exception e)
-		{
-			DialogUtil.showDialog(getActivity()
-					, "服务器响应异常，请稍后再试！" , false);
-			e.printStackTrace();
-		}
-		kindList.setOnItemClickListener(new OnItemClickListener()
-		{
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-									int position, long id)
-			{
-				Bundle bundle = new Bundle();
-				bundle.putLong("kindId", id);
-				mCallbacks.onItemSelected(CHOOSE_ITEM , bundle);
-			}
-		});
-		return rootView;
-	}
-	// 当该Fragment被添加、显示到Activity时，回调该方法
-	@Override
-	public void onAttach(Activity activity)
-	{
-		super.onAttach(activity);
-		// 如果Activity没有实现Callbacks接口，抛出异常
-		if (!(activity instanceof Callbacks))
-		{
-			throw new IllegalStateException(
-					"ManageKindFragment所在的Activity必须实现Callbacks接口!");
-		}
-		// 把该Activity当成Callbacks对象
-		mCallbacks = (Callbacks) activity;
-	}
-	// 当该Fragment从它所属的Activity中被删除时回调该方法
-	@Override
-	public void onDetach()
-	{
-		super.onDetach();
-		// 将mCallbacks赋为null。
-		mCallbacks = null;
-	}
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobQueryResult;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SQLQueryListener;
+import cn.bmob.v3.listener.SaveListener;
+
+public class ChooseKindFragment extends BaseFragment {
+    public static final int CHOOSE_ITEM = 0x1008;
+    Callbacks mCallbacks;
+    Button bnHome;
+    ListView kindList;
+    List<KindBean> beanList=new ArrayList<>();
+    KindAdapter kindAdapter;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater
+            , ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.choose_kind
+                , container, false);
+        bnHome = (Button) rootView.findViewById(R.id.bn_home);
+        kindList = (ListView) rootView.findViewById(R.id.kindList);
+        // 为返回按钮的单击事件绑定事件监听器
+        bnHome.setOnClickListener(new HomeListener(getActivity()));
+
+        // 使用ListView显示所有物品准种类
+        kindAdapter=new KindAdapter(beanList
+                , getActivity());
+        kindList.setAdapter(kindAdapter);
+
+        kindList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Bundle bundle = new Bundle();
+                bundle.putLong("kindId", id);
+                mCallbacks.onItemSelected(CHOOSE_ITEM, bundle);
+            }
+        });
+        initData();
+        return rootView;
+    }
+
+    private void initData() {
+//        KindBean kindBean=new KindBean();
+//        kindBean.setKindName("玩具");
+//        kindBean.setKindName("可爱的孩子们最爱");
+//        kindBean.save(new SaveListener<String>() {
+//            @Override
+//            public void done(String s, BmobException e) {
+//                if(e!=null){
+//                    LogUtils.loge(e.getMessage());
+//                    activity.toast("插入数据失败："+e.getMessage());
+//                }else{
+//                    activity.toast(s);
+//                }
+//            }
+//        });
+
+        BmobQuery<KindBean> query=new BmobQuery<KindBean>();
+        query.doSQLQuery("select * from KindBean", new SQLQueryListener<KindBean>() {
+            @Override
+            public void done(BmobQueryResult<KindBean> bmobQueryResult, BmobException e) {
+                if(e==null){
+                    beanList=bmobQueryResult.getResults();
+                    if(beanList!=null&&beanList.size()>0){
+                        LogUtils.logd("获取数据成功");
+                    }else{
+                        beanList=new ArrayList<KindBean>();
+                    }
+                    kindAdapter.notifyDataSetChanged();
+                }else{
+                    LogUtils.loge("获取数据失败："+e.getMessage());
+                    activity.toast(e.getMessage());
+                }
+            }
+        });
+    }
+
+    // 当该Fragment被添加、显示到Activity时，回调该方法
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        // 如果Activity没有实现Callbacks接口，抛出异常
+        if (!(activity instanceof Callbacks)) {
+            throw new IllegalStateException(
+                    "ManageKindFragment所在的Activity必须实现Callbacks接口!");
+        }
+        // 把该Activity当成Callbacks对象
+        mCallbacks = (Callbacks) activity;
+    }
+
+    // 当该Fragment从它所属的Activity中被删除时回调该方法
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        // 将mCallbacks赋为null。
+        mCallbacks = null;
+    }
 }

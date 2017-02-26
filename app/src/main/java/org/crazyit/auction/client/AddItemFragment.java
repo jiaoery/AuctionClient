@@ -1,10 +1,18 @@
 package org.crazyit.auction.client;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.crazyit.BaseFragment;
+import org.crazyit.auction.client.adapter.KindAdapter;
+import org.crazyit.auction.client.adapter.KindItemAdapter;
+import org.crazyit.auction.client.bean.Goods;
+import org.crazyit.auction.client.bean.KindBean;
 import org.crazyit.auction.client.util.DialogUtil;
 import org.crazyit.auction.client.util.HttpUtil;
+import org.crazyit.auction.client.util.LogUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,17 +26,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class AddItemFragment extends Fragment
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobQueryResult;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SQLQueryListener;
+import cn.bmob.v3.listener.SaveListener;
+
+public class AddItemFragment extends BaseFragment
 {
 	// 定义界面中文本框
 	EditText itemName, itemDesc,itemRemark,initPrice;
 	Spinner itemKind , availTime;
 	// 定义界面中两个按钮
 	Button bnAdd, bnCancel;
+	List<KindBean> kindBeanList=new ArrayList<>();
+	KindItemAdapter itemAdapter;
 	@Override
 	public View onCreateView(LayoutInflater inflater
 			, ViewGroup container, Bundle savedInstanceState)
 	{
+		super.onCreateView(inflater,container,savedInstanceState);
 		View rootView = inflater.inflate(R.layout.add_item
 				, container , false);
 		// 获取界面中的文本框
@@ -38,24 +56,14 @@ public class AddItemFragment extends Fragment
 		initPrice = (EditText) rootView.findViewById(R.id.initPrice);
 		itemKind = (Spinner) rootView.findViewById(R.id.itemKind);
 		availTime = (Spinner) rootView.findViewById(R.id.availTime);
-		// 定义发送请求的地址
-		String url = HttpUtil.BASE_URL + "viewKind.jsp";
-		JSONArray jsonArray = null;
-		try
-		{
-			// 获取系统中所有的物品种类
-			// 向执行URL发送请求，并把服务器响应包装成JSONArray
-			jsonArray = new JSONArray(HttpUtil.getRequest(url));  // ①
-		}
-		catch (Exception e1)
-		{
-			e1.printStackTrace();
-		}
-		// 将JSONArray包装成Adapter
-		JSONArrayAdapter adapter = new JSONArrayAdapter(
-				getActivity() , jsonArray , "kindName" , false);
-		// 显示物品种类列表
-		itemKind.setAdapter(adapter);
+		itemAdapter=new KindItemAdapter(getActivity(),kindBeanList);
+		itemKind.setAdapter(itemAdapter);
+
+//		// 将JSONArray包装成Adapter
+//		JSONArrayAdapter adapter = new JSONArrayAdapter(
+//				getActivity() , jsonArray , "kindName" , false);
+//		// 显示物品种类列表
+//		itemKind.setAdapter(adapter);
 		// 获取界面中的两个按钮
 		bnAdd = (Button) rootView.findViewById(R.id.bnAdd);
 		bnCancel = (Button) rootView.findViewById(R.id.bnCancel);
@@ -74,7 +82,7 @@ public class AddItemFragment extends Fragment
 					String desc = itemDesc.getText().toString();
 					String remark = itemRemark.getText().toString();
 					String price = initPrice.getText().toString();
-					JSONObject kind = (JSONObject) itemKind.getSelectedItem();
+					KindBean kind = (KindBean) itemKind.getSelectedItem();
 					int avail = availTime.getSelectedItemPosition();
 					//根据用户选择有效时间选项，指定实际的有效时间
 					switch(avail)
@@ -89,25 +97,37 @@ public class AddItemFragment extends Fragment
 							avail += 1;
 							break;
 					}
-					try
-					{
 						// 添加物品
-						String result = addItem(name, desc
-								, remark , price , kind.getInt("id") , avail);
-						// 显示对话框
-						DialogUtil.showDialog(getActivity()
-								, result , true);
-					}
-					catch (Exception e)
-					{
-						DialogUtil.showDialog(getActivity()
-								, "服务器响应异常，请稍后再试！" , false);
-						e.printStackTrace();
-					}
+						addItem(name, desc
+								, remark , price , kind.getKindName() , avail);
 				}
 			}
 		});
-		return rootView;
+
+	initData();
+	return rootView;
+}
+
+	private void initData() {
+		BmobQuery<KindBean> query=new BmobQuery<KindBean>();
+		query.doSQLQuery("select * from KindBean", new SQLQueryListener<KindBean>() {
+			@Override
+			public void done(BmobQueryResult<KindBean> bmobQueryResult, BmobException e) {
+				if(e==null){
+					if(bmobQueryResult.getResults()!=null&&bmobQueryResult.getResults().size()>0){
+						kindBeanList.clear();
+						kindBeanList.addAll(bmobQueryResult.getResults());
+						LogUtils.logd("获取数据成功");
+					}else{
+						kindBeanList=new ArrayList<KindBean>();
+					}
+					itemAdapter.notifyDataSetChanged();
+				}else{
+					LogUtils.loge("获取数据失败："+e.getMessage());
+					activity.toast(e.getMessage());
+				}
+			}
+		});
 	}
 
 	// 对用户输入的物品名、起拍价格进行校验
@@ -138,21 +158,42 @@ public class AddItemFragment extends Fragment
 		return true;
 	}
 
-	private String addItem(String name, String desc
-			, String remark , String initPrice , int kindId , int availTime)
-			throws Exception
+	private void addItem(String name, String desc
+			, String remark , String initPrice , String kindName , int availTime)
 	{
-		// 使用Map封装请求参数
-		Map<String , String> map = new HashMap<>();
-		map.put("itemName" , name);
-		map.put("itemDesc" , desc);
-		map.put("itemRemark" , remark);
-		map.put("initPrice" , initPrice);
-		map.put("kindId" , kindId + "");
-		map.put("availTime" , availTime + "");
-		// 定义发送请求的URL
-		String url = HttpUtil.BASE_URL + "addItem.jsp";
-		// 发送请求
-		return HttpUtil.postRequest(url , map);
+//		// 使用Map封装请求参数
+//		Map<String , String> map = new HashMap<>();
+//		map.put("itemName" , name);
+//		map.put("itemDesc" , desc);
+//		map.put("itemRemark" , remark);
+//		map.put("initPrice" , initPrice);
+//		map.put("kindId" , kindId);
+//		map.put("availTime" , availTime + "");
+//		// 定义发送请求的URL
+//		String url = HttpUtil.BASE_URL + "addItem.jsp";
+//		// 发送请求
+//		return HttpUtil.postRequest(url , map);
+
+		Goods good=new Goods();
+		good.setGoodsName(name);
+		good.setDesc(desc);
+		good.setInitPrice(Integer.valueOf(initPrice));
+		good.setKindName(kindName);
+		good.setGoodsRemark(remark);
+		good.setEndTime(availTime);
+//		good.setUserId(BmobUser.getCurrentUser().getObjectId());
+		good.save(new SaveListener<String>() {
+			@Override
+			public void done(String s, BmobException e) {
+				if(e==null){
+					LogUtils.logd("插入数据成功："+s);
+					activity.toast("插入新商品成:"+s);
+					activity.finish();
+				}else{
+					LogUtils.loge("插入新商品失败"+e.getMessage());
+					activity.toast("插入新商品失败"+e.getMessage());
+				}
+			}
+		});
 	}
 }

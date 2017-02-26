@@ -51,13 +51,13 @@
         android:layout_height="wrap_content"
         android:gravity="center">
         <Button
-            android:id="@+id/bnRegster"
-            android:text="@string/login"
+            android:id="@+id/bnRegister"
+            android:text="@string/register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <Button
-            android:id="@+id/bnCancel"
-            android:text="@string/cancel"
+            android:id="@+id/bnLogin"
+            android:text="@string/login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
