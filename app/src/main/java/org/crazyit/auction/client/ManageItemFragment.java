@@ -32,6 +32,7 @@ public class ManageItemFragment extends BaseFragment
 	public View onCreateView(LayoutInflater inflater
 			, ViewGroup container, Bundle savedInstanceState)
 	{
+		super.onCreateView(inflater,container,savedInstanceState);
 		View rootView = inflater.inflate(R.layout.manage_item
 				, container , false);
 		bnHome = (Button) rootView.findViewById(R.id.bn_home);

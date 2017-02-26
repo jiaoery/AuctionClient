@@ -30,6 +30,7 @@ public class AddItemFragment extends BaseFragment
 	public View onCreateView(LayoutInflater inflater
 			, ViewGroup container, Bundle savedInstanceState)
 	{
+		super.onCreateView(inflater,container,savedInstanceState);
 		View rootView = inflater.inflate(R.layout.add_item
 				, container , false);
 		// 获取界面中的文本框

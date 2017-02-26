@@ -20,6 +20,7 @@ public class AuctionListFragment extends Fragment
 	public View onCreateView(LayoutInflater inflater
 			, ViewGroup container, Bundle savedInstanceState)
 	{
+		super.onCreateView(inflater,container,savedInstanceState);
 		// 加载/res/layout/目录下的auction_list.xml布局文件
 		View rootView = inflater.inflate(R.layout.auction_list,
 				container, false);
