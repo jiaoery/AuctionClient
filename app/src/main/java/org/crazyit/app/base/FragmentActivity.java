@@ -15,9 +15,9 @@ public abstract class FragmentActivity extends Activity
 		LinearLayout layout = new LinearLayout(this);
 		setContentView(layout);
 		layout.setId(ROOT_CONTAINER_ID);
-		getFragmentManager().beginTransaction()
-			.replace(ROOT_CONTAINER_ID , getFragment())
-			.commit();
-	}
-	protected abstract Fragment getFragment();
-}
+	getFragmentManager().beginTransaction()
+		.replace(ROOT_CONTAINER_ID , getFragment())
+		.commit();
+		}
+protected abstract Fragment getFragment();
+		}
