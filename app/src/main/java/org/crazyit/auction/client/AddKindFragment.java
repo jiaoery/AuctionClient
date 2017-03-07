@@ -77,6 +77,7 @@ public class AddKindFragment extends BaseFragment {
                 if (e == null) {
                     LogUtils.logd("商品种类添加成功：" + s);
                     activity.toast("商品种类添加成功：" + s);
+                    activity.finish();
                 } else {
                     LogUtils.logd("商品种类添加失败：" + e.getMessage());
                     activity.toast("商品种类添加失败：" + e.getMessage());

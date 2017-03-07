@@ -31,7 +31,7 @@ public class Login extends BaseActivity
 	// 定义界面中两个按钮
 	Button bnLogin, bnCancel,bnResgister;
 	@Override
-	public void onCreate(Bundle savedInstanceState)
+	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
@@ -48,7 +48,6 @@ public class Login extends BaseActivity
 			@Override
 			public void onClick(View view) {
 				startActivity(new Intent(Login.this,Register.class));
-				finish();
 			}
 		});
 		bnLogin.setOnClickListener(new OnClickListener()

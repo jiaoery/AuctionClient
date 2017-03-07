@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--阴影线条-->
+    <style name="shadow_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_1</item>
+        <item name="android:background">@drawable/bottom_shadow</item>
+    </style>
+
+    <!-- 横向线条 -->
+    <style name="h_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/line_height</item>
+        <item name="android:background">@color/border_line_e8e8e8</item>
+    </style>
+    <!-- 竖向线条 -->
+    <style name="v_line">
+        <item name="android:layout_width">@dimen/dp_1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:minHeight">@dimen/dp_48</item>
+        <item name="android:background">@color/border_line_e8e8e8</item>
+    </style>
+
+    <style name="ripple_common">
+        <item name="android:background">@drawable/btn_common</item>
+    </style>
+
+    <!--公共的EditText风格-->
+    <style name="et_common">
+        <item name="android:textColorHint">@color/edit_text_hint</item>
+        <item name="android:textColor">@color/main_black_333</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!--公共的EditText风格-->
+    <style name="et_common_2" parent="et_common">
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <!--公共的EditText风格 无需输入，用于：点击选择并设置值的情况-->
+    <style name="et_not_input" parent="et_common">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_38</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:background">@null</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">true</item>
+        <!--禁止用于粘贴-->
+        <item name="android:editable">false</item>
+        <item name="android:longClickable">false</item>
+    </style>
+
+    <!--多行EditText-->
+    <style name="et_common_multiline" parent="et_common_2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:lineSpacingExtra">@dimen/dp_3</item>
+        <item name="android:paddingTop">@dimen/dp_6</item>
+        <item name="android:paddingBottom">@dimen/dp_6</item>
+    </style>
+
+
+    <!--——————————————提示成功界面————————————————-->
+    <style name="ll_success">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/dp_80</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_below">@+id/ll_toolbar</item>
+    </style>
+
+    <style name="iv_success_ok">
+        <item name="android:layout_width">@dimen/dp_90</item>
+        <item name="android:layout_height">@dimen/dp_90</item>
+        <item name="android:src">@drawable/icon_success</item>
+    </style>
+
+    <style name="tv_success_common_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="tv_success_title" parent="tv_success_common_wrap">
+        <item name="android:layout_marginTop">@dimen/dp_32</item>
+        <item name="android:textColor">@color/main_green_26a65b</item>
+        <item name="android:textSize">@dimen/text_size_24</item>
+    </style>
+
+    <style name="tv_success_content" parent="tv_success_common_wrap">
+        <item name="android:layout_marginTop">@dimen/dp_4</item>
+        <item name="android:textColor">@color/gray_light</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+    </style>
+
+    <!--——————————————其他————————————————-->
+
+    <!-- 发行程 -->
+    <style name="ripple_create_trip" parent="ripple_common">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/dp_48</item>
+    </style>
+
+
+    <style name="padding_all_8_16">
+        <item name="android:paddingTop">@dimen/dp_8</item>
+        <item name="android:paddingBottom">@dimen/dp_8</item>
+        <item name="android:paddingLeft">@dimen/dp_16</item>
+        <item name="android:paddingRight">@dimen/dp_16</item>
+    </style>
+
+    <style name="padding_top_bottom_8">
+        <item name="android:paddingTop">@dimen/dp_8</item>
+        <item name="android:paddingBottom">@dimen/dp_8</item>
+    </style>
+
+    <style name="padding_left_right_16">
+        <item name="android:paddingLeft">@dimen/dp_16</item>
+        <item name="android:paddingRight">@dimen/dp_16</item>
+    </style>
+
+    <style name="et_create_plan_select">
+        <item name="android:paddingLeft">@dimen/dp_16</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="et_create_plan_multiline" parent="et_common_multiline">
+        <item name="android:background">@null</item>
+        <item name="android:minHeight">@dimen/dp_48</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">true</item>
+        <item name="android:longClickable">false</item>
+    </style>
+
+    <!--————————个人中心部分————————-->
+    <style name="tv_account_base">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="rl_account">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/dp_16</item>
+        <item name="android:paddingRight">@dimen/dp_4</item>
+        <item name="android:background">@drawable/btn_common</item>
+    </style>
+
+    <style name="tv_account_name" parent="tv_account_base">
+        <item name="android:layout_width">@dimen/dp_105</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/tv_black_2</item>
+    </style>
+
+    <style name="tv_account_value" parent="tv_account_base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/height_48dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!--个人中心的资料填写框-->
+    <style name="et_account" parent="et_common_multiline">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/dp_48</item>
+        <item name="android:layout_marginRight">@dimen/dp_36</item>
+        <item name="android:background">@null</item>
+        <item name="android:enabled">false</item>
+    </style>
+
+    <style name="iv_account_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_8</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:src">@drawable/icon_line</item>
+    </style>
+
+    <style name="iv_account_edit">
+        <item name="android:layout_width">@dimen/dp_36</item>
+        <item name="android:layout_height">@dimen/dp_36</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:src">@drawable/icon_account_edit</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <style name="iv_account_head_pic">
+        <item name="android:layout_width">@dimen/dp_86</item>
+        <item name="android:layout_height">@dimen/dp_86</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <!--————————议价人列表————————-->
+    <style name="tv_bargain_list_send_reward">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_11</item>
+        <item name="android:textColor">@color/gray_light</item>
+    </style>
+
+    <!--绑定paypal账户页面-->
+    <style name="bind_paypal">
+        <item name="android:layout_width">@dimen/dp_38</item>
+        <item name="android:layout_height">@dimen/dp_38</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <!--————————消息详情模块————————-->
+    <!--竖条-->
+    <style name="line_msg">
+        <item name="android:layout_width">@dimen/dp_2</item>
+        <item name="android:layout_height">@dimen/dp_0</item>
+        <item name="android:background">@color/border_line_color_DEDEDE</item>
+    </style>
+
+    <!--圆圈-->
+    <style name="circle_msg">
+        <item name="android:layout_width">@dimen/dp_12</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/dp_8</item>
+        <item name="android:background">@drawable/bg_circle</item>
+    </style>
+
+    <!-- ————————设置界面————————-->
+    <style name="ripple_setting" parent="ripple_common">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_48</item>
+    </style>
+
+    <style name="ripple_setting.no_delay" parent="ripple_setting">
+        <!--<item name="mrl_rippleDelayClick">false</item>-->
+    </style>
+
+    <style name="rl_setting">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">@dimen/dp_24</item>
+        <item name="android:paddingRight">@dimen/dp_14</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/btn_common</item>
+    </style>
+
+    <style name="tv_setting">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/dp_4</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/tv_black_1</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+    <!--————————设置界面结束————————-->
+
+    <!--————————注册界面————————-->
+    <style name="tv_register_common">
+        <item name="android:textSize">@dimen/text_size_15</item>
+    </style>
+
+    <style name="et_register_common" parent="tv_register_common">
+        <item name="android:background">@null</item>
+        <item name="android:layout_width">@dimen/dp_0</item>
+        <item name="android:layout_weight">8</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColorHint">@color/edit_text_hint</item>
+        <item name="android:textColor">@color/tv_value</item>
+    </style>
+
+    <style name="text_register">
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:textSize">@dimen/text_size_15</item>
+    </style>
+
+    <!-- 时间选择器popwidnow 显示消失动画 -->
+    <style name="timepopwindow_anim_style">
+        <item name="android:windowEnterAnimation">@anim/datetimepicker_anim_enter_bottom</item>
+        <!-- 指定显示的动画xml -->
+        <item name="android:windowExitAnimation">@anim/datetimepicker_anim_exit_bottom</item>
+        <!-- 指定消失的动画xml -->
+    </style>
+
+    <!-- 历史地址dialog-->
+    <style name="address_history_dialog" parent="@style/Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="colorPrimary">@color/main_green_deliver</item>
+    </style>
+
+    <attr name="layout_item_bg" format="reference" />
+
+    <style name="tv_my_order_popup">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ll_apply_deliver_second">
+        <item name="android:layout_width">@dimen/dp_250</item>
+        <item name="android:layout_height">@dimen/dp_180</item>
+    </style>
+</resources>

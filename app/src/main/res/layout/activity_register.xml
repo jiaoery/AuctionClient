@@ -1,64 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
-    android:layout_height="match_parent"
-    android:layout_gravity="center_horizontal"
-    android:stretchColumns="1">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/my_toolbar"
+        layout="@layout/toolbar_with_right_btn" />
+
+
     <ImageView
+        android:id="@+id/iv_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
-        android:src="@drawable/logo"
-        android:contentDescription="@string/hello"/>
+        android:layout_below="@+id/my_toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/logo" />
+
     <TextView
-        android:text="@string/welcome"
         android:id="@+id/TextView"
-        android:textSize="@dimen/label_font_size"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_logo"
         android:gravity="center"
-        android:padding="@dimen/title_padding"/>
+        android:padding="@dimen/title_padding"
+        android:text="@string/welcome"
+        android:textSize="@dimen/label_font_size" />
     <!-- 输入用户名的行 -->
-    <TableRow>
+    <LinearLayout
+        android:id="@+id/ll_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TextView"
+        android:orientation="horizontal">
+
         <TextView
-            android:text="@string/user_name"
-            android:textSize="@dimen/label_font_size"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/user_name"
+            android:textSize="@dimen/label_font_size" />
+
         <EditText
             android:id="@+id/userEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
-    </TableRow>
+            android:inputType="text"
+            android:hint="@string/input_username"
+            android:textColor="@color/main_black_333"
+            android:textSize="@dimen/text_size_15"/>
+    </LinearLayout>
     <!-- 输入密码的行 -->
-    <TableRow>
+    <LinearLayout
+        android:id="@+id/ll_psd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_username"
+        android:orientation="horizontal">
+
         <TextView
-            android:text="@string/user_pass"
-            android:textSize="@dimen/label_font_size"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/user_pass"
+            android:textSize="@dimen/label_font_size" />
+
         <EditText
-            android:text=""
             android:id="@+id/pwdEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
-    </TableRow>
-    <!-- 定义登录、取消按钮的行 -->
-    <LinearLayout android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-        <Button
-            android:id="@+id/bnRegister"
-            android:text="@string/register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <Button
-            android:id="@+id/bnLogin"
-            android:text="@string/login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:inputType="textPassword"
+            android:hint="@string/input_pwd"
+            android:textColor="@color/main_black_333"
+            android:textSize="@dimen/text_size_15"/>
     </LinearLayout>
-</TableLayout>
+
+    <!-- 定义登录、取消按钮的行 -->
+    <LinearLayout
+        style="@style/ll_btn_bottom_common"
+        android:layout_alignParentBottom="true">
+
+
+        <!--<View style="@style/h_line" />-->
+
+
+        <LinearLayout
+            style="@style/ll_btn_bottom_common_inner"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/bnRegister"
+                style="@style/ripple_btn_bottom_single_green"
+                android:text="@string/register" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

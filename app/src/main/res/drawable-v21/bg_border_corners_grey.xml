@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/btn_common_press_v21">
+    <item>
+        <shape android:shape="rectangle">
+            <!-- 填充颜色 -->
+            <solid android:color="@color/order_divide_line_D5D5D5"/>
+            <corners android:radius="@dimen/dp_4" />
+        </shape>
+    </item>
+</ripple>

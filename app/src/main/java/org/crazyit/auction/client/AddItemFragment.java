@@ -42,6 +42,7 @@ public class AddItemFragment extends BaseFragment
 	Button bnAdd, bnCancel;
 	List<KindBean> kindBeanList=new ArrayList<>();
 	KindItemAdapter itemAdapter;
+	long endtime;
 	@Override
 	public View onCreateView(LayoutInflater inflater
 			, ViewGroup container, Bundle savedInstanceState)
@@ -87,19 +88,35 @@ public class AddItemFragment extends BaseFragment
 					//根据用户选择有效时间选项，指定实际的有效时间
 					switch(avail)
 					{
-						case 5 :
-							avail = 7;
+						case 0://一天
+							endtime=System.currentTimeMillis()+24*60*60*1000;
 							break;
-						case 6 :
-							avail = 30;
+						case 1://两天
+							endtime=System.currentTimeMillis()+2*24*60*60*1000;
+							break;
+						case 2://三天
+							endtime=System.currentTimeMillis()+3*24*60*60*1000;
+							break;
+						case 3://四天
+							endtime=System.currentTimeMillis()+4*24*60*60*1000;
+							break;
+						case 4://五天
+							endtime=System.currentTimeMillis()+5*24*60*60*1000;
+							break;
+						case 5 ://一周
+							avail = 7;
+							endtime=System.currentTimeMillis()+7*24*60*60*1000;
+							break;
+						case 6 ://一个月
+							endtime=System.currentTimeMillis()+30*24*60*60*1000;
 							break;
 						default :
-							avail += 1;
+							endtime=System.currentTimeMillis();
 							break;
 					}
 						// 添加物品
 						addItem(name, desc
-								, remark , price , kind.getKindName() , avail);
+								, remark , price , kind.getKindName() , endtime);
 				}
 			}
 		});
@@ -159,7 +176,7 @@ public class AddItemFragment extends BaseFragment
 	}
 
 	private void addItem(String name, String desc
-			, String remark , String initPrice , String kindName , int availTime)
+			, String remark , String initPrice , String kindName , long availTime)
 	{
 //		// 使用Map封装请求参数
 //		Map<String , String> map = new HashMap<>();

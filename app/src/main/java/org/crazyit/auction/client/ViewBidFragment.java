@@ -1,8 +1,12 @@
 package org.crazyit.auction.client;
 
 import org.crazyit.BaseFragment;
+import org.crazyit.auction.client.adapter.GoodsAdapter;
+import org.crazyit.auction.client.bean.Goods;
 import org.crazyit.auction.client.util.DialogUtil;
 import org.crazyit.auction.client.util.HttpUtil;
+import org.crazyit.auction.client.util.LogUtils;
+import org.crazyit.auction.client.util.Tools;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,81 +22,92 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ViewBidFragment extends BaseFragment
-{
-	Button bnHome;
-	ListView bidList;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
 
-	@Override
-	public View onCreateView(LayoutInflater inflater
-			, ViewGroup container, Bundle savedInstanceState)
-	{
-		super.onCreateView(inflater,container,savedInstanceState);
-		View rootView = inflater.inflate(R.layout.view_bid
-				, container , false);
-		// 获取界面上的返回按钮
-		bnHome = (Button) rootView.findViewById(R.id.bn_home);
-		bidList = (ListView) rootView.findViewById(R.id.bidList);
-		// 为返回按钮的单击事件绑定事件监听器
-		bnHome.setOnClickListener(new HomeListener(getActivity()));
-		// 定义发送请求的URL
-		String url = HttpUtil.BASE_URL + "viewBid.jsp";
-		try
-		{
-//			// 向指定URL发送请求，并把服务器响应包装成JSONArray对象
-//			JSONArray jsonArray = new JSONArray(HttpUtil.getRequest(url));
-//			// 将JSONArray包装成Adapter
-//			JSONArrayAdapter adapter = new JSONArrayAdapter(getActivity()
-//					, jsonArray, "item", true);
-//			bidList.setAdapter(adapter);
-		}
-		catch (Exception e)
-		{
-			DialogUtil.showDialog(getActivity(), "服务器响应异常，请稍后再试！", false);
-			e.printStackTrace();
-		}
-		bidList.setOnItemClickListener(new OnItemClickListener()
-		{
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-									int position, long id)
-			{
-				// 查看竞价详情
-				viewBidDetail(position);
-			}
-		});
-		return rootView;
-	}
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
-	private void viewBidDetail(int position)
-	{
-		// 加载bid_detail.xml界面布局代表的视图
-		View detailView = getActivity().getLayoutInflater()
-				.inflate(R.layout.bid_detail, null);
-		// 获取bid_detail界面中的文本框
-		TextView itemName = (TextView) detailView
-				.findViewById(R.id.itemName);
-		TextView bidPrice = (TextView) detailView
-				.findViewById(R.id.bidPrice);
-		TextView bidTime = (TextView) detailView
-				.findViewById(R.id.bidTime);
-		TextView bidUser = (TextView) detailView
-				.findViewById(R.id.bidUser);
-		// 获取被单击项目所包装的JSONObject
-		JSONObject jsonObj = (JSONObject) bidList.getAdapter()
-				.getItem(position);
-		try
-		{
-			// 使用文本框来显示竞价详情。
-			itemName.setText(jsonObj.getString("item"));
-			bidPrice.setText(jsonObj.getString("price"));
-			bidTime.setText(jsonObj.getString("bidDate"));
-			bidUser.setText(jsonObj.getString("user"));
-		}
-		catch (JSONException e)
-		{
-			e.printStackTrace();
-		}
-		DialogUtil.showDialog(getActivity(), detailView);
-	}
+/**
+ * 浏览自己竞拍的物品（拍下和未拍下的）
+ */
+public class ViewBidFragment extends BaseFragment {
+    Button bnHome;
+    ListView bidList;
+    List<Goods> goodsList = new ArrayList<>();//查询数据集
+    GoodsAdapter adapter;//列表适配器
+
+    @Override
+    public View onCreateView(LayoutInflater inflater
+            , ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View rootView = inflater.inflate(R.layout.view_bid
+                , container, false);
+        // 获取界面上的返回按钮
+        bnHome = (Button) rootView.findViewById(R.id.bn_home);
+        bidList = (ListView) rootView.findViewById(R.id.bidList);
+        // 为返回按钮的单击事件绑定事件监听器
+        bnHome.setOnClickListener(new HomeListener(getActivity()));
+        adapter = new GoodsAdapter(activity, goodsList, "name", true);
+        bidList.setAdapter(adapter);
+        bidList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                // 查看竞价详情
+                viewBidDetail(position);
+            }
+        });
+        initData();
+        return rootView;
+    }
+
+    private void initData() {
+        BmobQuery<Goods> query = new BmobQuery<>();
+        query.addWhereEqualTo("userId", BmobUser.getCurrentUser().getObjectId());
+        query.findObjects(new FindListener<Goods>() {
+            @Override
+            public void done(List<Goods> list, BmobException e) {
+                if (e == null) {
+                    if (list != null && list.size() > 0) {
+                        goodsList.clear();
+                        goodsList.addAll(list);//添加数据
+                        adapter.notifyDataSetChanged();//通知listview刷新
+                    }
+                } else {
+                    LogUtils.loge("获取数据失败：" + e.getMessage());
+                    activity.toast("获取数据失败：" + e.getMessage());
+                }
+            }
+        });
+    }
+
+    //显示商品的详情
+    private void viewBidDetail(int position) {
+        // 加载bid_detail.xml界面布局代表的视图
+        View detailView = getActivity().getLayoutInflater()
+                .inflate(R.layout.bid_detail, null);
+        // 获取bid_detail界面中的文本框
+        TextView itemName = (TextView) detailView
+                .findViewById(R.id.itemName);
+        TextView bidPrice = (TextView) detailView
+                .findViewById(R.id.bidPrice);
+        TextView bidTime = (TextView) detailView
+                .findViewById(R.id.bidTime);
+        TextView bidUser = (TextView) detailView
+                .findViewById(R.id.bidUser);
+//        // 获取被单击项目所包装的JSONObject
+//        JSONObject jsonObj = (JSONObject) bidList.getAdapter()
+//                .getItem(position);
+        Goods good = goodsList.get(position);
+        // 使用文本框来显示竞价详情。
+        itemName.setText(good.getGoodsName());
+        bidPrice.setText(String.valueOf(good.getMaxPrice()));//必须将int类型强转为string类型
+        bidTime.setText(Tools.formatTime(good.getEndTime()));
+        bidUser.setText(BmobUser.getCurrentUser().getUsername());
+        DialogUtil.showDialog(getActivity(), detailView);
+    }
 }
