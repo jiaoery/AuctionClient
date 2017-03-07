@@ -1,71 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="300dp"
-	android:layout_height="match_parent"
-	android:layout_gravity="center_horizontal"
-	android:stretchColumns="1">
-<ImageView
-	android:layout_width="20dp"
-	android:layout_height="40dp"
-	android:layout_marginTop="5dp"
-	android:background="@drawable/logo"
-	android:layout_gravity="center"
-	/>
-<TextView
-	android:text="@string/welcome"
-	android:id="@+id/TextView"
-	android:textSize="@dimen/label_font_size"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:gravity="center"
-	android:padding="@dimen/title_padding"/>	
-<!-- 输入用户名的行 -->
-<TableRow>
-<TextView
-	android:text="@string/user_name"
-	android:textSize="@dimen/label_font_size"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"/>
-<EditText
-	android:id="@+id/userEditText"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:inputType="text"/>
-</TableRow>
-<!-- 输入密码的行 -->
-<TableRow>
-<TextView
-	android:text="@string/user_pass"
-	android:textSize="@dimen/label_font_size"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"/>
-<EditText
-	android:text=""
-	android:id="@+id/pwdEditText"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:inputType="textPassword"/>
-</TableRow>
-<!-- 定义登录、取消按钮的行 -->
-<LinearLayout android:orientation="horizontal"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:gravity="center">
-<Button
-	android:id="@+id/bnLogin"
-	android:text="@string/login"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"/>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical">
 
-	<Button
-		android:id="@+id/bnRegister"
-		android:text="@string/register"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"/>
-<Button
-	android:id="@+id/bnCancel"
-	android:text="@string/cancel"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"/>	
-</LinearLayout>
-</TableLayout>
+    <include android:id="@+id/toolbar"
+        layout="@layout/toolbar_with_right_btn"/>
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/logo"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/TextView"
+        android:layout_below="@+id/iv_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/title_padding"
+        android:text="@string/welcome"
+        android:textSize="@dimen/label_font_size" />
+    <!-- 输入用户名的行 -->
+    <LinearLayout
+        android:id="@+id/ll_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TextView"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/dp_16">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_name"
+            android:textSize="@dimen/label_font_size" />
+
+        <EditText
+            android:id="@+id/userEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_username"
+            android:inputType="text"
+            android:textColor="@color/main_black_333"
+            android:textSize="@dimen/text_size_18" />
+
+    </LinearLayout>
+
+
+    <!-- 输入密码的行 -->
+    <LinearLayout
+        android:id="@+id/ll_psd"
+        android:layout_below="@+id/ll_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/dp_16">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_pass"
+            android:textSize="@dimen/label_font_size"
+            />
+
+        <EditText
+            android:id="@+id/pwdEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="@string/input_pwd"
+            android:textSize="@dimen/text_size_18"
+            android:textColor="@color/main_black_333"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        style="@style/ll_btn_bottom_common"
+        android:layout_alignParentBottom="true">
+    <LinearLayout
+        style="@style/ll_btn_bottom_common_inner"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_login"
+            style="@style/ripple_btn_bottom_single_green"
+            android:text="@string/login" />
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_with_line"
+            android:textColor="@color/order_detail_money_FFBC01"
+            android:textSize="@dimen/text_size_16"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dp_16"/>
+
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

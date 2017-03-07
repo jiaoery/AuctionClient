@@ -9,7 +9,7 @@
         <!-- 窗口的背景颜色 -->
         <item name="android:windowBackground">@android:color/white</item>
         <!--<item name="lineColor">@color/border_line_e8e8e8</item>-->
-        <!--<item name="textColor">@color/tv_value</item>-->
+        <item name="android:textColor">@color/tv_value</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
         <item name="windowActionModeOverlay">true</item>

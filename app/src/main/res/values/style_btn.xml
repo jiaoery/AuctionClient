@@ -120,6 +120,7 @@
         <item name="android:layout_marginRight">@dimen/btn_single_bottom_margin_left_right</item>
         <item name="android:layout_marginBottom">@dimen/btn_bottom_margin_bottom</item>
         <item name="android:background">@drawable/bg_border_corners_green</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <!--底部单个：绿色按钮-->
