@@ -7,6 +7,9 @@ import android.support.v4.app.FragmentActivity;
 
 import org.crazyit.BaseFragmentActivity;
 
+/**
+ * 管理商品种类
+ */
 public class ManageKind extends BaseFragmentActivity
 		implements Callbacks
 {

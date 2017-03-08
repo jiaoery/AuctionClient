@@ -15,15 +15,20 @@ public abstract class BaseFragmentActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        //设置该activity的布局
         FrameLayout layout = new FrameLayout(this);
         setContentView(layout);
         layout.setId(ROOT_CONTAINER_ID);
 //        getFragmentManager().beginTransaction()
 //                .replace(ROOT_CONTAINER_ID , getFragment())
 //                .commit();
+
+        //替换framelyout为指定的fragemnt（碎片）
         getSupportFragmentManager().beginTransaction()
                 .replace(ROOT_CONTAINER_ID,getFragment())
                 .commit();
     }
+
+    //获取相应的fragment（碎片）
     protected abstract Fragment getFragment();
 }

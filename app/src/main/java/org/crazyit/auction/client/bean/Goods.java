@@ -17,6 +17,8 @@ public class Goods extends BmobObject{
 
     private String kindName;//种类名称
 
+    private String goodsIcon;//商品图片
+
     private String item;//商品备注信息
 
     private int initPrice;//初始价格
@@ -31,6 +33,13 @@ public class Goods extends BmobObject{
 
     private long addTime;//添加日期
 
+    public String getGoodsIcon() {
+        return goodsIcon;
+    }
+
+    public void setGoodsIcon(String goodsIcon) {
+        this.goodsIcon = goodsIcon;
+    }
 
     public String getUserId() {
         return userId;

@@ -39,7 +39,7 @@ public class ViewItemFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater
             , ViewGroup container, Bundle savedInstanceState) {
-        super.onCreateView(inflater,container,savedInstanceState);
+        super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.view_item
                 , container, false);
         // 获取界面上的返回按钮
@@ -79,23 +79,23 @@ public class ViewItemFragment extends BaseFragment {
     //初始化数据
     public void initData() {
         //查询用户已经竞拍到的商品，为 最高价为用户，且已过截至日期
-                    BmobQuery<Goods> goodsQuery = new BmobQuery<>();
-                    goodsQuery.addWhereEqualTo("userId", BmobUser.getCurrentUser().getObjectId());
-                    goodsQuery.addWhereLessThan("endTime",System.currentTimeMillis());
-                    goodsQuery.findObjects(new FindListener<Goods>() {
-                        @Override
-                        public void done(List<Goods> list, BmobException e) {
-                            if (e == null) {
-                                goodses.clear();
-                                goodses.addAll(list);
-                                adapter.notifyDataSetChanged();
-                            } else {
-                                LogUtils.loge(e.getMessage());
-                                activity.toast("获取竞得物品失败：" + e.getMessage());
+        BmobQuery<Goods> goodsQuery = new BmobQuery<>();
+        goodsQuery.addWhereEqualTo("userId", BmobUser.getCurrentUser().getObjectId());
+        goodsQuery.addWhereLessThan("endTime", System.currentTimeMillis());
+        goodsQuery.findObjects(new FindListener<Goods>() {
+            @Override
+            public void done(List<Goods> list, BmobException e) {
+                if (e == null) {
+                    goodses.clear();
+                    goodses.addAll(list);
+                    adapter.notifyDataSetChanged();
+                } else {
+                    LogUtils.loge(e.getMessage());
+                    activity.toast("获取竞得物品失败：" + e.getMessage());
 
-                            }
-                        }
-                    });
+                }
+            }
+        });
 
 
     }

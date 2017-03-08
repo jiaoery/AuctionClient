@@ -30,7 +30,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //初始化bomb云
+        //初始化bomb云，
         Bmob.initialize(this, "04e87f33b464ac0e2171075a7fb805ef");
         LOG_TAG=this.toString();
         Logger.init(LOG_TAG);

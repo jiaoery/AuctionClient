@@ -28,6 +28,9 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
 
+/**
+ * 管理物品种类
+ */
 public class ManageKindFragment extends BaseFragment {
     public static final int ADD_KIND = 0x1007;
     Button bnHome, bnAdd;

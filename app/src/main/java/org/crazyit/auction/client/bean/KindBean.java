@@ -13,6 +13,16 @@ public class KindBean extends BmobObject {
 
     private String kindDesc;//种类介绍
 
+    private String kindIcon;//商品种类图像
+
+
+    public String getKindIcon() {
+        return kindIcon;
+    }
+
+    public void setKindIcon(String kindIcon) {
+        this.kindIcon = kindIcon;
+    }
 
     public String getKindName() {
         return kindName;
