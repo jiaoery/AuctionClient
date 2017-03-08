@@ -39,4 +39,6 @@
     <string name="title_activity_register">注册</string>
     <string name="input_username">请如输入账户信息</string>
     <string name="input_pwd">请输入用户口令</string>
+    <string name="notification">提示</string>
+    <string name="logining">正在登陆中</string>
 </resources>

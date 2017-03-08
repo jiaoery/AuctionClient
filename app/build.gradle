@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "org.crazyit.auction.client"
+        applicationId "org.crazyit"
         minSdkVersion 19
         targetSdkVersion 23
         versionCode 1

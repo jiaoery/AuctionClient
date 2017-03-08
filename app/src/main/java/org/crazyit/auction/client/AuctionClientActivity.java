@@ -3,12 +3,15 @@ package org.crazyit.auction.client;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 
 import org.crazyit.BaseActivity;
+import org.crazyit.constant.CONSTANT;
 
 public class AuctionClientActivity extends BaseActivity
 		implements Callbacks
 {
+	Toolbar mToolbar;
 	// 定义一个旗标，用于标识该应用是否支持大屏幕
 	private boolean mTwoPane;
 	@Override
@@ -18,6 +21,8 @@ public class AuctionClientActivity extends BaseActivity
 		// 指定加载R.layout.activity_main对应的界面布局文件
 		// 但实际上该应用会根据屏幕分辨率家在不同的界面布局文件
 		setContentView(R.layout.activity_main);
+		mToolbar= (Toolbar) findViewById(R.id.my_toolbar);
+		initToolbar(mToolbar,getString(R.string.app_name));
 		// 如果加载的界面布局文件中包含ID为auction_detail_container的组件
 		if (findViewById(R.id.auction_detail_container) != null)
 		{
@@ -105,14 +110,16 @@ public class AuctionClientActivity extends BaseActivity
 		else
 		{
 			Intent intent = null;
+			String[] strings=getResources().getStringArray(R.array.auction_list);
 			switch ((int) id)
 			{
+
 				// 查看竞得物品
 				case 0:
 					// 启动ViewItem Activity
 					intent = new Intent(this, ViewItem.class);
 					// action属性为请求的Servlet地址。
-					intent.putExtra("action", "viewSucc.jsp");
+					intent.putExtra(CONSTANT.COMMON_TITLE,strings[id]);
 					startActivity(intent);
 					break;
 				// 浏览流拍物品
@@ -120,31 +127,35 @@ public class AuctionClientActivity extends BaseActivity
 					// 启动ViewItem Activity
 					intent = new Intent(this, ViewItem.class);
 					// action属性为请求的Servlet的URL。
-					intent.putExtra("action", "viewFail.jsp");
+					intent.putExtra(CONSTANT.COMMON_TITLE, strings[id]);
 					startActivity(intent);
 					break;
 				// 管理物品种类
 				case 2:
 					// 启动ManageKind Activity
 					intent = new Intent(this, ManageKind.class);
+					intent.putExtra(CONSTANT.COMMON_TITLE, strings[id]);
 					startActivity(intent);
 					break;
 				// 管理物品
 				case 3:
 					// 启动ManageItem Activity
 					intent = new Intent(this, ManageItem.class);
+					intent.putExtra(CONSTANT.COMMON_TITLE, strings[id]);
 					startActivity(intent);
 					break;
 				// 浏览拍卖物品（选择物品种类）
 				case 4:
 					// 启动ChooseKind Activity
 					intent = new Intent(this, ChooseKind.class);
+					intent.putExtra(CONSTANT.COMMON_TITLE, strings[id]);
 					startActivity(intent);
 					break;
 				// 查看自己的竞标
 				case 5:
 					// 启动ViewBid Activity
 					intent = new Intent(this, ViewBid.class);
+					intent.putExtra(CONSTANT.COMMON_TITLE, strings[id]);
 					startActivity(intent);
 					break;
 			}
