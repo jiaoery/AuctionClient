@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import org.crazyit.BaseFragmentActivity;
+import org.crazyit.constant.CONSTANT;
 
 public class ManageItem extends BaseFragmentActivity
 		implements Callbacks
@@ -20,6 +21,7 @@ public class ManageItem extends BaseFragmentActivity
 	{
 		// 当用户单击添加按钮时，将会启动AddItem Activity
 		Intent i = new Intent(this , AddItem.class);
+		i.putExtra(CONSTANT.COMMON_TITLE,getString(R.string.add_goods));
 		startActivity(i);
 		finish();
 	}

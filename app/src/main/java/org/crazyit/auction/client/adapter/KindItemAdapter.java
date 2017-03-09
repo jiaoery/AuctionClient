@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  *
- *新增商品商品种类adapter
+ *新增商品商品种类adapter  下拉控件
  * Created by cqjix on 2017/2/26.
  */
 

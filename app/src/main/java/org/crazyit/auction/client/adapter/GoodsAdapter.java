@@ -63,6 +63,7 @@ public class GoodsAdapter extends BaseAdapter
 			convertView=inflater.inflate(R.layout.item_goods,parent,false);
 			holder.imageView= (ImageView) convertView.findViewById(R.id.iv_good);
 			holder.goodName= (TextView) convertView.findViewById(R.id.tv_good_name);
+			holder.goodDesc= (TextView) convertView.findViewById(R.id.tv_good_desc);
 			holder.kindName= (TextView) convertView.findViewById(R.id.tv_kind_name);
 			holder.goodInitPrice= (TextView) convertView.findViewById(R.id.tv_initprice);
 			holder.goodMaxPrice= (TextView) convertView.findViewById(R.id.tv_max_price);
@@ -78,6 +79,7 @@ public class GoodsAdapter extends BaseAdapter
 			}
 			holder.goodName.setText(goodses.get(position).getGoodsName());
 			holder.kindName.setText(goodses.get(position).getKindName());
+			holder.goodDesc.setText(goodses.get(position).getDesc());
 			holder.goodInitPrice.setText(String.valueOf(goodses.get(position).getInitPrice()));
 			holder.goodMaxPrice.setText(String.valueOf(goodses.get(position).getMaxPrice()));
 			holder.goodEndTime.setText(Tools.formatTime(goodses.get(position).getEndTime()));

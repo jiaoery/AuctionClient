@@ -1,36 +1,28 @@
 package org.crazyit.auction.client;
 
-import org.crazyit.BaseFragment;
-import org.crazyit.auction.client.adapter.GoodsAdapter;
-import org.crazyit.auction.client.adapter.KindAdapter;
-import org.crazyit.auction.client.bean.Goods;
-import org.crazyit.auction.client.util.DialogUtil;
-import org.crazyit.auction.client.util.HttpUtil;
-import org.crazyit.auction.client.util.LogUtils;
-import org.crazyit.auction.client.util.Tools;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
-import android.app.Fragment;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.crazyit.BaseFragment;
+import org.crazyit.auction.client.adapter.GoodsAdapter;
+import org.crazyit.auction.client.bean.Goods;
+import org.crazyit.auction.client.util.DialogUtil;
+import org.crazyit.auction.client.util.LogUtils;
+import org.crazyit.auction.client.util.Tools;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
