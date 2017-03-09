@@ -6,6 +6,7 @@ import org.crazyit.auction.client.bean.KindBean;
 import org.crazyit.auction.client.util.DialogUtil;
 import org.crazyit.auction.client.util.HttpUtil;
 import org.crazyit.auction.client.util.LogUtils;
+import org.crazyit.constant.CONSTANT;
 import org.json.JSONArray;
 
 import android.app.Activity;
@@ -57,7 +58,9 @@ public class ManageKindFragment extends BaseFragment {
             public void onClick(View source) {
                 // 当添加按钮被单击时，
                 // 调用该Fragment所在Activity的onItemSelected方法
-                mCallbacks.onItemSelected(ADD_KIND, null);
+                Bundle bundle=new Bundle();
+                bundle.putString(CONSTANT.COMMON_TITLE,getString(R.string.add_kind));
+                mCallbacks.onItemSelected(ADD_KIND, bundle);
             }
         });
         kindAdapter=new KindAdapter(kindBeanList

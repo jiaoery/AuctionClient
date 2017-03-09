@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import org.crazyit.BaseFragmentActivity;
+import org.crazyit.constant.CONSTANT;
 
 /**
  * 管理商品种类
@@ -24,6 +25,7 @@ public class ManageKind extends BaseFragmentActivity
 	{
 		// 当用户单击ManageKindFragment中添加按钮时，启动AddKind Activity
 		Intent i = new Intent(this , AddKind.class);
+		i.putExtra(CONSTANT.COMMON_TITLE,bundle.getString(CONSTANT.COMMON_TITLE));
 		startActivity(i);
 	}
 }

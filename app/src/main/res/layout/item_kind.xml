@@ -21,6 +21,7 @@
         android:layout_marginRight="@dimen/dp_8"
         android:layout_toRightOf="@+id/iv_kind"
         android:maxLines="2"
+        android:text="玩具"
         android:textColor="@color/tv_value"
         android:textSize="@dimen/text_size_14"
         android:textStyle="bold" />

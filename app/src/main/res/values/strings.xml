@@ -51,4 +51,5 @@
     <string name="input_kind_name">请输入种类名称</string>
     <string name="input_kind_desc">请输入种类简介</string>
     <string name="add_goods">添加商品</string>
+    <string name="add_kind">添加种类</string>
 </resources>
