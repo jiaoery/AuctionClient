@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import org.crazyit.BaseFragmentActivity;
+import org.crazyit.constant.CONSTANT;
 
 public class ChooseKind extends BaseFragmentActivity
 	implements Callbacks
@@ -20,6 +21,7 @@ public class ChooseKind extends BaseFragmentActivity
 	{
 		Intent intent = new Intent(this , ChooseItem.class);
 		intent.putExtra("kindName", bundle.getString("kindName"));
+		intent.putExtra(CONSTANT.COMMON_TITLE,bundle.getString("kindName"));
 		startActivity(intent);
 	}
 }

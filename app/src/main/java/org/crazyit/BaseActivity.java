@@ -34,6 +34,7 @@ public class BaseActivity extends AppCompatActivity {
         Bmob.initialize(this, "04e87f33b464ac0e2171075a7fb805ef");
         LOG_TAG=this.toString();
         Logger.init(LOG_TAG);
+        System.out.println("进入页面："+LOG_TAG);
     }
 
 
