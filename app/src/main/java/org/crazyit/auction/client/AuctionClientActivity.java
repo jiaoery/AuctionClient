@@ -110,6 +110,7 @@ public class AuctionClientActivity extends BaseActivity
 		else
 		{
 			Intent intent = null;
+			//获取res/value/aray的数据
 			String[] strings=getResources().getStringArray(R.array.auction_list);
 			switch ((int) id)
 			{
@@ -118,7 +119,7 @@ public class AuctionClientActivity extends BaseActivity
 				case 0:
 					// 启动ViewItem Activity
 					intent = new Intent(this, ViewItem.class);
-					// action属性为请求的Servlet地址。
+					// 传入下个界面的title值
 					intent.putExtra(CONSTANT.COMMON_TITLE,strings[id]);
 					startActivity(intent);
 					break;
@@ -126,7 +127,7 @@ public class AuctionClientActivity extends BaseActivity
 				case 1:
 					// 启动ViewItem Activity
 					intent = new Intent(this, ViewItem.class);
-					// action属性为请求的Servlet的URL。
+					// 传入下个界面的title值
 					intent.putExtra(CONSTANT.COMMON_TITLE, strings[id]);
 					startActivity(intent);
 					break;
