@@ -1,62 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:stretchColumns="1">	
-<TextView
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:text="@string/add_kind_title"
-	android:textSize="@dimen/label_font_size"	
-	android:gravity="center"
-	android:padding="@dimen/title_padding"
-	/>	
-<TableRow>
-<TextView
-	android:text="@string/kind_name"
-	android:textSize="@dimen/label_font_size"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"/>
-<EditText
-	android:id="@+id/kindName"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:inputType="text"
-	android:hint="@string/input_kind_name"
-	android:textColor="@color/tv_value"
-	android:textSize="@dimen/text_size_20"/>
-</TableRow>
-<TableRow>
-<TextView
-	android:text="@string/kind_desc"
-	android:textSize="@dimen/label_font_size"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"/>
-<EditText
-	android:id="@+id/kindDesc"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:inputType="text"
-	android:textColor="@color/tv_value"
-	android:textSize="@dimen/text_size_20"
-	android:hint="@string/input_kind_desc"/>
-</TableRow>
-<LinearLayout
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:gravity="center">
-<Button
-	android:id="@+id/bnAdd"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:text="@string/add"
-	/>
-<Button
-	android:id="@+id/bnCancel"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:text="@string/cancel"
-	/>	
-</LinearLayout>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/title_padding"
+        android:text="@string/add_kind_title"
+        android:textSize="@dimen/label_font_size" />
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kind_name"
+            android:textSize="@dimen/label_font_size" />
+
+        <EditText
+            android:id="@+id/kindName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_kind_name"
+            android:inputType="text"
+            android:textColor="@color/tv_value"
+            android:textSize="@dimen/text_size_20" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kind_desc"
+            android:textSize="@dimen/label_font_size" />
+
+        <EditText
+            android:id="@+id/kindDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_kind_desc"
+            android:inputType="text"
+            android:textColor="@color/tv_value"
+            android:textSize="@dimen/text_size_20" />
+    </TableRow>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_add_kind"
+            android:layout_width="@dimen/dp_160"
+            android:layout_height="@dimen/dp_160"
+            android:layout_centerInParent="true"
+            android:src="@drawable/icon_photo_add_2" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/bnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add" />
+
+        <Button
+            android:id="@+id/bnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel" />
+    </LinearLayout>
 </TableLayout>

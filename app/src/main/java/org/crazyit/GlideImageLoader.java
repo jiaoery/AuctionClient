@@ -21,7 +21,6 @@ import cn.finalteam.galleryfinal.widget.GFImageView;
 
 public class GlideImageLoader implements ImageLoader {
 
-    public static int TAG=0X12312;
 
     /**
      * 重载galleryfinal的图片加载框架（默认为imageloader）
@@ -49,12 +48,13 @@ public class GlideImageLoader implements ImageLoader {
 
                     @Override
                     public void setRequest(Request request) {
-                        imageView.setTag(TAG,request);
+//                        imageView.setTag(TAG,request);
+                        imageView.setTag(request);
                     }
 
                     @Override
                     public Request getRequest() {
-                        return (Request) imageView.getTag(TAG);
+                        return (Request) imageView.getTag();
                     }
                 });
     }

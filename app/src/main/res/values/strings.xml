@@ -52,4 +52,8 @@
     <string name="input_kind_desc">请输入种类简介</string>
     <string name="add_goods">添加商品</string>
     <string name="add_kind">添加种类</string>
+    <string name="permission_camera_grant">这里需要打开相机</string>
+    <string name="permission_camera_no">确定取消打开相机？</string>
+    <string name="permission_camera_go_to_setting">永久取消使用相机？</string>
+    <string name="choose_image">请选择图片</string>
 </resources>
