@@ -73,6 +73,7 @@ public class GoodsAdapter extends BaseAdapter
 		}
 		if(position<getCount()){
 			if(hasIcon){
+				//图片加载框架
 				Glide.with(context).load(goodses.get(position).getGoodsIcon()).centerCrop().placeholder(R.drawable.ic_launcher).into(holder.imageView);
 			}
 			holder.goodName.setText(goodses.get(position).getGoodsName());
