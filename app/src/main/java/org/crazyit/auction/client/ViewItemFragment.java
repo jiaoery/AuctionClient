@@ -117,7 +117,7 @@ public class ViewItemFragment extends BaseFragment {
         // 获取被单击的列表项
 //        JSONObject jsonObj = (JSONObject) succList.getAdapter().getItem(
 //                position);
-        Goods goods = goodses.get(position);
+        Goods goods = goodses.get(position-1);
         // 通过文本框显示物品详情
         itemName.setText(goods.getGoodsName());
         itemKind.setText(goods.getKindName());

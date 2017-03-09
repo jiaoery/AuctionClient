@@ -63,7 +63,7 @@ public class DialogUtil {
 			if (show) {//显示
 				showProgress(activity);
 			} else {//隐藏
-				dismissProgress();
+				dismissProgress(activity);
 			}
 	}
 
@@ -72,7 +72,7 @@ public class DialogUtil {
 	 * @param activity
      */
 	private static void showProgress(Activity activity) {
-		if(loadingDialog==null)
+		if(loadingDialog==null&&activity!=null)
 		loadingDialog= ProgressDialog.show(activity, activity.getString(R.string.notification), activity.getString(R.string.logining));
 		loadingDialog.show();
 
@@ -81,8 +81,8 @@ public class DialogUtil {
 	/**
 	 * 过程dialog消失
 	 */
-	private static void dismissProgress(){
-		if(loadingDialog!=null)
+	private static void dismissProgress(Activity activity){
+		if(loadingDialog!=null&&activity!=null)
 		loadingDialog.dismiss();
 	}
 
