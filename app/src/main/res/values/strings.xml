@@ -43,4 +43,11 @@
     <string name="logining">正在登陆中</string>
     <string name="desc">详细简介</string>
     <string name="initprice">初始价格:</string>
+    <string name="input_goods_name">请输入物品名</string>
+    <string name="input_goods_desc">请输入物品简介</string>
+    <string name="input_goods_remark">请输入物品备注</string>
+    <string name="input_goods_initprice">请输入物品起拍价</string>
+    <string name="input_goods_maxprice">请输入您的竞拍价</string>
+    <string name="input_kind_name">请输入种类名称</string>
+    <string name="input_kind_desc">请输入种类简介</string>
 </resources>

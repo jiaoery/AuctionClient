@@ -115,7 +115,10 @@
 	android:id="@+id/bidPrice"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:inputType="number"/>
+	android:inputType="number"
+	android:hint="@string/input_goods_maxprice"
+	android:textColor="@color/tv_value"
+	android:textSize="@dimen/text_size_20"/>
 </TableRow>
 <LinearLayout
 	android:layout_width="match_parent"
