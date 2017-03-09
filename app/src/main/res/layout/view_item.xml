@@ -28,5 +28,8 @@
 <ListView
 	android:id="@+id/succList"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"/>
+	android:layout_height="match_parent"
+	android:divider="@color/border_line_e8e8e8"
+	android:dividerHeight="@dimen/dp_1"
+	/>
 </LinearLayout>

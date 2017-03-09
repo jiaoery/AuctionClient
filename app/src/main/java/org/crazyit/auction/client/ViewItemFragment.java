@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -55,11 +56,11 @@ public class ViewItemFragment extends BaseFragment {
 
         // 为返回按钮的单击事件绑定事件监听器
         bnHome.setOnClickListener(new HomeListener(getActivity()));
-        String action = getArguments().getString("action");
         viewTitle.setText(R.string.view_fail);
-
+        succList.addFooterView(new ViewStub(getActivity()));
+        succList.addHeaderView(new ViewStub(getActivity()));
         adapter = new GoodsAdapter(getActivity()
-                , goodses, "name", true);  // ②
+                , goodses, true);  // ②
         succList.setAdapter(adapter);
 
         succList.setOnItemClickListener(new

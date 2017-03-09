@@ -41,4 +41,6 @@
     <string name="input_pwd">请输入用户口令</string>
     <string name="notification">提示</string>
     <string name="logining">正在登陆中</string>
+    <string name="desc">详细简介</string>
+    <string name="initprice">初始价格:</string>
 </resources>

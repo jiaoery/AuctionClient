@@ -53,7 +53,7 @@ public class ChooseItemFragment extends BaseFragment {
         bnHome.setOnClickListener(new HomeListener(getActivity()));
         Bundle bundle = getArguments();
         String kindName = bundle.getString("kindName");
-        goodsAdapter = new GoodsAdapter(getActivity(), goodses, "name", true);
+        goodsAdapter = new GoodsAdapter(getActivity(), goodses, true);
         // 根据种类ID获取该种类对应的所有物品
 //			JSONArray jsonArray = new JSONArray(HttpUtil.getRequest(url));
 //			JSONArrayAdapter adapter = new JSONArrayAdapter(

@@ -67,7 +67,7 @@ public class ManageItemFragment extends BaseFragment {
 //		String url = HttpUtil.BASE_URL + "viewOwnerItem.jsp";
 //		try
 //		{
-        goodsAdapter = new GoodsAdapter(getActivity(), goodses, "name", true);
+        goodsAdapter = new GoodsAdapter(getActivity(), goodses, true);
         itemList.setAdapter(goodsAdapter);
 //			// 向指定URL发送请求
 //			JSONArray jsonArray = new JSONArray(HttpUtil.getRequest(url));

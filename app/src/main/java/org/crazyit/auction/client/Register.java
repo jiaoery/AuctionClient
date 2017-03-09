@@ -51,9 +51,11 @@ public class Register extends BaseActivity {
             BmobUser user = new BmobUser();
             user.setUsername(username);
             user.setPassword(pwd);
+            DialogUtil.showProgress(this,true);
             user.signUp(new SaveListener<BmobUser>() {
                 @Override
                 public void done(BmobUser bmobUser, BmobException e) {
+                    DialogUtil.showProgress(Register.this,false);
                     if (e == null) {
                         toast("注册成功:" + bmobUser.toString());
                         //启动Main Activity

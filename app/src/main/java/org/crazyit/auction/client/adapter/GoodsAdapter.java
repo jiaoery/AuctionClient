@@ -2,16 +2,20 @@ package org.crazyit.auction.client.adapter;
 
 import org.crazyit.auction.client.R;
 import org.crazyit.auction.client.bean.Goods;
+import org.crazyit.auction.client.util.Tools;
 import org.json.JSONObject;
 import org.json.JSONException;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -20,17 +24,15 @@ public class GoodsAdapter extends BaseAdapter
 	private Context context;
 	//商品列表
 	private List<Goods> goodses;
-	// 定义列表项显示JSONObject对象的哪个属性
-	private String property;
 	private boolean hasIcon;
+	private LayoutInflater inflater;
 	public GoodsAdapter(Context context
-			, List<Goods> goodses, String property
-			, boolean hasIcon)
+			, List<Goods> goodses, boolean hasIcon)
 	{
 		this.context = context;
 		this.goodses = goodses;
-		this.property = property;
 		this.hasIcon = hasIcon;
+		this.inflater=LayoutInflater.from(context);
 	}
 
 	@Override
@@ -55,44 +57,41 @@ public class GoodsAdapter extends BaseAdapter
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		// 定义一个线性布局管理器
-		LinearLayout linear = new LinearLayout(context);
-		// 设置为水平的线性布局管理器
-		linear.setOrientation(LinearLayout.HORIZONTAL);
-		// 创建一个ImageView
-		ImageView iv = new ImageView(context);
-		iv.setPadding(10, 0, 20, 0);
-		iv.setImageResource(R.drawable.item);
-		// 将图片添加到LinearLayout中
-		linear.addView(iv);
-		// 创建一个TextView
-		TextView tv = new TextView(context);
-			// 获取JSONArray数组元素的property属性
-//			String itemName = ((JSONObject)getItem(position))
-//					.getString(property);
-		String itemName="";
-		switch (property){
-			case "name"://商品名称
-				itemName=getItem(position).getGoodsName();
-				break;
-			case "kindName"://种类名称
-				itemName=getItem(position).getKindName();
-				break;
+		ViewHolder holder;
+		if(convertView==null){//如果该界面缓存为空
+			holder=new ViewHolder();
+			convertView=inflater.inflate(R.layout.item_goods,parent,false);
+			holder.imageView= (ImageView) convertView.findViewById(R.id.iv_good);
+			holder.goodName= (TextView) convertView.findViewById(R.id.tv_good_name);
+			holder.kindName= (TextView) convertView.findViewById(R.id.tv_kind_name);
+			holder.goodInitPrice= (TextView) convertView.findViewById(R.id.tv_initprice);
+			holder.goodMaxPrice= (TextView) convertView.findViewById(R.id.tv_max_price);
+			holder.goodEndTime= (TextView) convertView.findViewById(R.id.tv_end_time);
+			convertView.setTag(holder);
+		}else{
+			holder= (ViewHolder) convertView.getTag();
 		}
+		if(position<getCount()){
+			if(hasIcon){
+				Glide.with(context).load(goodses.get(position).getGoodsIcon()).centerCrop().placeholder(R.drawable.ic_launcher).into(holder.imageView);
+			}
+			holder.goodName.setText(goodses.get(position).getGoodsName());
+			holder.kindName.setText(goodses.get(position).getKindName());
+			holder.goodInitPrice.setText(String.valueOf(goodses.get(position).getInitPrice()));
+			holder.goodMaxPrice.setText(String.valueOf(goodses.get(position).getMaxPrice()));
+			holder.goodEndTime.setText(Tools.formatTime(goodses.get(position).getEndTime()));
 
-			// 设置TextView所显示的内容
-			tv.setText(itemName);
+		}
+		return convertView;
+	}
 
-		tv.setTextSize(20);
-		if (hasIcon)
-		{
-			// 将TextView添加到LinearLayout中
-			linear.addView(tv);
-			return linear;
-		}
-		else
-		{
-			return tv;
-		}
+	class ViewHolder{
+		public ImageView imageView;//商品图像
+		public TextView goodName;//商品名称
+		public TextView kindName;//商品种类
+		public TextView goodDesc;//商品简介
+		public TextView goodInitPrice;//商品的初始价格
+		public TextView goodMaxPrice;//商品的最高价格
+		public TextView goodEndTime;//商品的截至时间
 	}
 }

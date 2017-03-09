@@ -51,7 +51,7 @@ public class ViewBidFragment extends BaseFragment {
         bidList = (ListView) rootView.findViewById(R.id.bidList);
         // 为返回按钮的单击事件绑定事件监听器
         bnHome.setOnClickListener(new HomeListener(getActivity()));
-        adapter = new GoodsAdapter(activity, goodsList, "name", true);
+        adapter = new GoodsAdapter(activity, goodsList, true);
         bidList.setAdapter(adapter);
         bidList.setOnItemClickListener(new OnItemClickListener() {
             @Override

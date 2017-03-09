@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/btn_common">
+    
+    <ImageView
+        android:id="@+id/iv_good"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_100"
+        android:layout_margin="@dimen/dp_16"
+        android:scaleType="centerCrop"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_launcher"/>
+
+
+    <TextView
+        android:id="@+id/tv_kind_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_8"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:maxLines="2"
+        android:text="唐代绿碗"
+        android:textColor="@color/order_detail_money_FFBC01"
+        android:textSize="@dimen/text_size_14"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/tv_good_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_36"
+        android:layout_alignTop="@+id/iv_good"
+        android:layout_marginRight="@dimen/dp_8"
+        android:layout_toRightOf="@+id/iv_good"
+        android:maxLines="2"
+        android:text="LV包 路易威登经典女式包"
+        android:textColor="@color/tv_value"
+        android:textSize="@dimen/text_size_14"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_good_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_good_name"
+        android:layout_alignLeft="@+id/tv_good_name"
+        android:text="非比寻常的豪华包包"
+        android:textColor="@color/tv_value"
+        android:textSize="@dimen/text_size_14"/>
+
+    <TextView
+        android:id="@+id/tv_initprice_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_good_desc"
+        android:layout_alignLeft="@+id/tv_good_desc"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="@string/initprice"
+        android:textColor="@color/tv_value"
+        android:textSize="@dimen/text_size_14"
+        />
+
+    <TextView
+        android:id="@+id/tv_initprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_initprice_tag"
+        android:layout_toRightOf="@+id/tv_initprice_tag"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:text="100"
+        android:textColor="@color/my_red_FF6868"
+        />
+
+    <TextView
+        android:id="@+id/tv_max_price_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_initprice_tag"
+        android:layout_alignLeft="@+id/tv_initprice_tag"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="@string/max_price"
+        android:textColor="@color/tv_value"
+        android:textSize="@dimen/text_size_14"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_max_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_max_price_tag"
+        android:layout_toRightOf="@+id/tv_max_price_tag"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:text="100"
+        android:textColor="@color/my_red_FF6868"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_end_time_tag"
+        android:text="@string/avail_time"
+        android:textColor="@color/tv_value"
+        android:textSize="@dimen/text_size_14"
+        android:layout_below="@+id/tv_max_price_tag"
+        android:layout_alignLeft="@+id/tv_initprice_tag"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_5"
+        android:layout_marginBottom="@dimen/dp_10"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_end_time"
+        android:text="2017-04-01 9:15;54"
+        android:layout_alignBaseline="@+id/tv_end_time_tag"
+        android:layout_toRightOf="@+id/tv_end_time_tag"
+        />
+
+
+
+
+    
+
+</RelativeLayout>
